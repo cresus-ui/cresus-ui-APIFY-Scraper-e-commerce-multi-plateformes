@@ -1,0 +1,41 @@
+# Fichiers à ignorer lors du build Apify
+
+# Node modules (installés via package.json)
+node_modules/
+
+# Fichiers de développement
+.git/
+.gitignore
+.eslintrc.js
+babel.config.js
+jest.config.js
+
+# Tests
+test/
+*.test.js
+*.spec.js
+
+# Documentation
+README.md
+
+# Exemples
+examples/
+
+# Fichiers temporaires
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Coverage
+coverage/
+
+# Build artifacts
+dist/
+build/
