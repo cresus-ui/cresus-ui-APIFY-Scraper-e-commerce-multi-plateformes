@@ -24,7 +24,7 @@
         "type": "string",
         "title": "Terme de recherche"
       },
-      "editor": "stringList",
+      "editor": "textarea",
       "placeholderValue": "smartphone, laptop, headphones"
     },
     "productUrls": {
@@ -36,7 +36,7 @@
         "title": "URL du produit",
         "format": "uri"
       },
-      "editor": "stringList",
+      "editor": "textarea",
       "placeholderValue": "https://www.amazon.com/dp/B08N5WRWNW"
     },
     "maxProducts": {
@@ -99,7 +99,7 @@
         "type": "string",
         "title": "Catégorie"
       },
-      "editor": "stringList",
+      "editor": "textarea",
       "placeholderValue": "Electronics, Books, Clothing"
     },
     "excludeOutOfStock": {
@@ -135,7 +135,7 @@
         "title": "Domaine Shopify",
         "format": "hostname"
       },
-      "editor": "stringList",
+      "editor": "textarea",
       "placeholderValue": "mystore.myshopify.com, customdomain.com"
     },
     "proxyConfiguration": {
