@@ -1,0 +1,28 @@
+module.exports = {
+  presets: [
+    [
+      '@babel/preset-env',
+      {
+        targets: {
+          node: '16'
+        },
+        modules: 'commonjs'
+      }
+    ]
+  ],
+  env: {
+    test: {
+      presets: [
+        [
+          '@babel/preset-env',
+          {
+            targets: {
+              node: 'current'
+            },
+            modules: 'commonjs'
+          }
+        ]
+      ]
+    }
+  }
+};

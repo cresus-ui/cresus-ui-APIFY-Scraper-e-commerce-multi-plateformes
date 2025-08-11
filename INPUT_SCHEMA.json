@@ -1,0 +1,269 @@
+{
+  "title": "Scraper E-commerce Multi-plateformes",
+  "description": "Scraper automatisé pour Amazon, eBay, Walmart, Etsy et Shopify avec suivi des prix, stocks et tendances",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "platforms": {
+      "title": "Plateformes à scraper",
+      "type": "array",
+      "description": "Sélectionnez les plateformes e-commerce à scraper",
+      "default": ["amazon", "ebay", "walmart", "etsy", "shopify"],
+      "items": {
+        "type": "string",
+        "enum": ["amazon", "ebay", "walmart", "etsy", "shopify"]
+      },
+      "editor": "select",
+      "uniqueItems": true
+    },
+    "searchTerms": {
+      "title": "Termes de recherche",
+      "type": "array",
+      "description": "Liste des mots-clés à rechercher sur chaque plateforme",
+      "items": {
+        "type": "string",
+        "title": "Terme de recherche"
+      },
+      "editor": "stringList",
+      "placeholderValue": "smartphone, laptop, headphones"
+    },
+    "productUrls": {
+      "title": "URLs de produits spécifiques",
+      "type": "array",
+      "description": "URLs directes de produits à scraper (optionnel)",
+      "items": {
+        "type": "string",
+        "title": "URL du produit",
+        "format": "uri"
+      },
+      "editor": "stringList",
+      "placeholderValue": "https://www.amazon.com/dp/B08N5WRWNW"
+    },
+    "maxProducts": {
+      "title": "Nombre maximum de produits",
+      "type": "integer",
+      "description": "Nombre maximum de produits à scraper par plateforme",
+      "default": 100,
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "trackPrices": {
+      "title": "Suivi des prix",
+      "type": "boolean",
+      "description": "Activer le suivi automatique des prix",
+      "default": true
+    },
+    "trackStock": {
+      "title": "Suivi des stocks",
+      "type": "boolean",
+      "description": "Activer le suivi de la disponibilité des produits",
+      "default": true
+    },
+    "trackTrends": {
+      "title": "Analyse des tendances",
+      "type": "boolean",
+      "description": "Activer l'analyse des tendances de marché",
+      "default": false
+    },
+    "priceFilters": {
+      "title": "Filtres de prix",
+      "type": "object",
+      "description": "Filtres pour limiter les résultats par prix",
+      "properties": {
+        "minPrice": {
+          "title": "Prix minimum",
+          "type": "number",
+          "description": "Prix minimum en USD",
+          "minimum": 0
+        },
+        "maxPrice": {
+          "title": "Prix maximum",
+          "type": "number",
+          "description": "Prix maximum en USD",
+          "minimum": 0
+        },
+        "currency": {
+          "title": "Devise",
+          "type": "string",
+          "description": "Devise pour les filtres de prix",
+          "default": "USD",
+          "enum": ["USD", "EUR", "GBP", "CAD", "AUD"]
+        }
+      }
+    },
+    "categoryFilters": {
+      "title": "Filtres de catégorie",
+      "type": "array",
+      "description": "Catégories spécifiques à inclure dans la recherche",
+      "items": {
+        "type": "string",
+        "title": "Catégorie"
+      },
+      "editor": "stringList",
+      "placeholderValue": "Electronics, Books, Clothing"
+    },
+    "excludeOutOfStock": {
+      "title": "Exclure les produits en rupture",
+      "type": "boolean",
+      "description": "Exclure les produits non disponibles des résultats",
+      "default": false
+    },
+    "includeReviews": {
+      "title": "Inclure les avis",
+      "type": "boolean",
+      "description": "Scraper les notes et nombre d'avis des produits",
+      "default": true
+    },
+    "includeImages": {
+      "title": "Inclure les images",
+      "type": "boolean",
+      "description": "Inclure les URLs des images de produits",
+      "default": true
+    },
+    "includeDescriptions": {
+      "title": "Inclure les descriptions",
+      "type": "boolean",
+      "description": "Scraper les descriptions détaillées des produits",
+      "default": false
+    },
+    "shopifyDomains": {
+      "title": "Domaines Shopify personnalisés",
+      "type": "array",
+      "description": "Liste des domaines Shopify spécifiques à scraper",
+      "items": {
+        "type": "string",
+        "title": "Domaine Shopify",
+        "format": "hostname"
+      },
+      "editor": "stringList",
+      "placeholderValue": "mystore.myshopify.com, customdomain.com"
+    },
+    "proxyConfiguration": {
+      "title": "Configuration proxy",
+      "type": "object",
+      "description": "Configuration des proxies pour éviter les blocages",
+      "properties": {
+        "useApifyProxy": {
+          "title": "Utiliser Apify Proxy",
+          "type": "boolean",
+          "description": "Utiliser les proxies résidentiels d'Apify",
+          "default": true
+        },
+        "apifyProxyGroups": {
+          "title": "Groupes de proxy Apify",
+          "type": "array",
+          "description": "Groupes de proxy spécifiques à utiliser",
+          "items": {
+            "type": "string",
+            "enum": ["RESIDENTIAL", "DATACENTER"]
+          },
+          "default": ["RESIDENTIAL"]
+        },
+        "apifyProxyCountry": {
+          "title": "Pays des proxies",
+          "type": "string",
+          "description": "Code pays pour les proxies (US, GB, DE, etc.)",
+          "default": "US"
+        }
+      }
+    },
+    "maxConcurrency": {
+      "title": "Concurrence maximale",
+      "type": "integer",
+      "description": "Nombre maximum de pages à scraper simultanément",
+      "default": 5,
+      "minimum": 1,
+      "maximum": 20
+    },
+    "requestDelay": {
+      "title": "Délai entre requêtes (ms)",
+      "type": "integer",
+      "description": "Délai en millisecondes entre chaque requête",
+      "default": 1000,
+      "minimum": 500,
+      "maximum": 10000
+    },
+    "outputFormat": {
+      "title": "Format de sortie",
+      "type": "string",
+      "description": "Format des données exportées",
+      "default": "json",
+      "enum": ["json", "csv", "xlsx"]
+    },
+    "notifications": {
+      "title": "Notifications",
+      "type": "object",
+      "description": "Configuration des notifications",
+      "properties": {
+        "email": {
+          "title": "Email de notification",
+          "type": "string",
+          "description": "Email pour recevoir les rapports de scraping",
+          "format": "email"
+        },
+        "webhook": {
+          "title": "Webhook URL",
+          "type": "string",
+          "description": "URL webhook pour les notifications en temps réel",
+          "format": "uri"
+        },
+        "priceAlerts": {
+          "title": "Alertes de prix",
+          "type": "boolean",
+          "description": "Recevoir des alertes lors de changements de prix significatifs",
+          "default": false
+        },
+        "stockAlerts": {
+          "title": "Alertes de stock",
+          "type": "boolean",
+          "description": "Recevoir des alertes lors de changements de disponibilité",
+          "default": false
+        }
+      }
+    },
+    "advancedOptions": {
+      "title": "Options avancées",
+      "type": "object",
+      "description": "Configuration avancée pour utilisateurs expérimentés",
+      "properties": {
+        "customSelectors": {
+          "title": "Sélecteurs CSS personnalisés",
+          "type": "object",
+          "description": "Sélecteurs CSS personnalisés pour sites spécifiques",
+          "properties": {
+            "title": {
+              "title": "Sélecteur titre",
+              "type": "string"
+            },
+            "price": {
+              "title": "Sélecteur prix",
+              "type": "string"
+            },
+            "availability": {
+              "title": "Sélecteur disponibilité",
+              "type": "string"
+            }
+          }
+        },
+        "userAgent": {
+          "title": "User Agent personnalisé",
+          "type": "string",
+          "description": "User Agent à utiliser pour les requêtes"
+        },
+        "enableJavaScript": {
+          "title": "Activer JavaScript",
+          "type": "boolean",
+          "description": "Activer l'exécution JavaScript (plus lent mais plus précis)",
+          "default": true
+        },
+        "screenshotOnError": {
+          "title": "Capture d'écran en cas d'erreur",
+          "type": "boolean",
+          "description": "Prendre une capture d'écran en cas d'erreur pour debugging",
+          "default": false
+        }
+      }
+    }
+  },
+  "required": ["platforms"]
+}

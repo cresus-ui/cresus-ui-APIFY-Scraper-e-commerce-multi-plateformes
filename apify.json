@@ -1,0 +1,65 @@
+{
+  "name": "multi-platform-ecommerce-scraper",
+  "version": "1.0.0",
+  "buildTag": "latest",
+  "env": null,
+  "defaultRunOptions": {
+    "build": "latest",
+    "timeoutSecs": 3600,
+    "memoryMbytes": 4096
+  },
+  "storages": {
+    "dataset": {
+      "actorSpecification": 1,
+      "views": {
+        "overview": {
+          "title": "Overview",
+          "transformation": {
+            "fields": [
+              "platform",
+              "title",
+              "price",
+              "currency",
+              "availability",
+              "url",
+              "scrapedAt"
+            ]
+          },
+          "display": {
+            "component": "table",
+            "properties": {
+              "platform": {
+                "label": "Platform",
+                "format": "text"
+              },
+              "title": {
+                "label": "Product Title",
+                "format": "text"
+              },
+              "price": {
+                "label": "Price",
+                "format": "number"
+              },
+              "currency": {
+                "label": "Currency",
+                "format": "text"
+              },
+              "availability": {
+                "label": "Stock Status",
+                "format": "text"
+              },
+              "url": {
+                "label": "Product URL",
+                "format": "link"
+              },
+              "scrapedAt": {
+                "label": "Scraped At",
+                "format": "datetime"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
